@@ -1,0 +1,8 @@
+.filter-section {
+  padding: 4px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: auto;
+}
