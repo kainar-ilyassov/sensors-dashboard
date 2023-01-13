@@ -1,3 +1,9 @@
+### VIDEO DEMO:
+
+https://user-images.githubusercontent.com/97696834/212373334-9a6a6209-3be8-464f-a095-623fc369a158.mov
+
+
+
 ### How to run the server and client applications
 
 1. Firstly, from the `/server` directory in your terminal or IDE run the following command:
