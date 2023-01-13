@@ -1,10 +1,10 @@
 ### How to run the server and client applications
 
-1. From the `/server` directory in your terminal or IDE run the following command:
+1. Firstly, from the `/server` directory in your terminal or IDE run the following command:
 
 - npm install && npm start
 
-2. From the `/client` directory in your terminal or IDE run the following command:
+2. After that, from the `/client` directory in your terminal or IDE run the following command:
 
 - npm install && npm start
 
