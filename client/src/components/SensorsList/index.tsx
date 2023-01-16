@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { LOADING, NOT_FOUND } from "../../constants";
 import { ISensor } from "../../types";
-import { PlaceHolder } from "../PlaceHolder";
-import { SensorCard } from "../SensorCard";
+import { PlaceHolder } from "../common";
+import { SensorCard } from "./SensorCard";
 
 import "./style.css";
 
@@ -11,14 +11,21 @@ type ISensorsList = {
   sensors: ISensor[];
 };
 
-export const SensorsList = ({ isFiltered, sensors }: ISensorsList) => {
+export const SensorsList: React.FC<ISensorsList> = ({
+  isFiltered,
+  sensors,
+}) => {
+  const sensorsList = useMemo(
+    () =>
+      isFiltered
+        ? sensors.filter((sensor: ISensor) => sensor.connected === isFiltered)
+        : sensors,
+    [isFiltered, sensors]
+  );
+
   if (!sensors.length) {
     return <PlaceHolder label={LOADING} />;
   }
-
-  const sensorsList = isFiltered
-    ? sensors.filter((sensor: ISensor) => sensor.connected === isFiltered)
-    : sensors;
 
   if (isFiltered && !sensorsList.length) {
     return <PlaceHolder label={NOT_FOUND} />;

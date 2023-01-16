@@ -9,7 +9,7 @@ type IPlaceHolder = {
 
 export const PlaceHolder = ({ label }: IPlaceHolder) => {
   return (
-    <div className="not-found">
+    <div className="placeholder-label">
       <Label labelName={label} />
       <GiSadCrab color="#fff" fontSize={22} />
     </div>

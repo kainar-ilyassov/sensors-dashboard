@@ -19,14 +19,10 @@ export const SocketProvider = (props: ISocketProvider) => {
       }, SOCKET_RECONNECTION_TIMEOUT);
     };
 
-    ws.onclose = onClose;
-
-    ws.onerror = (error) => {
-      console.log("Websocket connection error", error);
-    };
+    ws.addEventListener("close", onClose);
 
     return () => {
-      ws.close();
+      ws.removeEventListener("close", onClose);
     };
   }, [ws, setWs]);
 

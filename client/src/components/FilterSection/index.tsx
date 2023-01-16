@@ -1,6 +1,6 @@
 import React from "react";
-import { Label } from "../Label";
-import { SwitchButton } from "../SwitchButton";
+import { Label } from "../common/Label";
+import { SwitchButton } from "../common/SwitchButton";
 import { FILTER_LABEL } from "../../constants";
 
 import "./style.css";

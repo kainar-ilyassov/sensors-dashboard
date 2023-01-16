@@ -9,7 +9,7 @@ import {
   WiStrongWind,
   WiNa,
 } from "react-icons/wi";
-import { SENSOR_NAME } from "../../constants";
+import { SENSOR_NAME } from "../../../../constants";
 
 type ISensorIcon = {
   iconName: string;
@@ -34,7 +34,7 @@ const getIcon = (iconName: string) => {
   }
 };
 
-export const SensorIcon = ({ iconName }: ISensorIcon) => {
+export const SensorIcon: React.FC<ISensorIcon> = ({ iconName }) => {
   return (
     <IconContext.Provider
       value={{

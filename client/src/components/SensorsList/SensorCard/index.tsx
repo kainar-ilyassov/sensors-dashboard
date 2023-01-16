@@ -1,10 +1,9 @@
 import React from "react";
-import { useSocket } from "../../hooks/useSocket";
-import { ISensor } from "../../types";
-import { Label } from "../Label";
-import { SensorIcon } from "../SensorIcon";
-import { SwitchButton } from "../SwitchButton";
-import { CONNECT, DISCONNECT } from "../../constants";
+import { useSocket } from "../../../hooks/useSocket";
+import { ISensor } from "../../../types";
+import { SensorIcon } from "./SensorIcon";
+import { Label, SwitchButton } from "../../common";
+import { CONNECT, DISCONNECT } from "../../../constants";
 
 import "./style.css";
 
@@ -12,9 +11,9 @@ type ISensorCard = {
   sensor: ISensor;
 };
 
-export const SensorCard = ({
+export const SensorCard: React.FC<ISensorCard> = ({
   sensor: { id, name, value, unit, connected },
-}: ISensorCard) => {
+}) => {
   const socket = useSocket();
 
   const toggleButton = (isToggled: boolean) => {

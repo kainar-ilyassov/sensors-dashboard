@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSocket } from "./hooks/useSocket";
 import { ISensor, IMessage } from "./types";
 import { SensorsList } from "./components/SensorsList";
@@ -7,16 +7,21 @@ import { FilterSection } from "./components/FilterSection";
 const App = () => {
   const socket = useSocket();
 
-  const [sensorsInfo, setSensorsInfo] = useState<ISensor | Object>({});
+  const [sensorsInfo, setSensorsInfo] = useState<{
+    [Key: ISensor["id"]]: ISensor;
+  }>({});
   const [isFiltered, toggleFilter] = useState(false);
 
-  const onMessage = useCallback((message: IMessage) => {
-    const data = JSON.parse(message.data);
-    setSensorsInfo((prev: ISensor) => ({
-      ...prev,
-      [data.id]: data,
-    }));
-  }, []);
+  const onMessage = useCallback(
+    (message: IMessage) => {
+      const data = JSON.parse(message.data) as ISensor;
+      setSensorsInfo((prev) => ({
+        ...prev,
+        [data.id]: data,
+      }));
+    },
+    [setSensorsInfo]
+  );
 
   useEffect(() => {
     socket.onmessage = onMessage;
@@ -26,7 +31,10 @@ const App = () => {
     };
   }, [socket, onMessage]);
 
-  const sensorsList: ISensor[] = Object.values(sensorsInfo);
+  const sensorsList: ISensor[] = useMemo(
+    () => Object.values(sensorsInfo),
+    [sensorsInfo]
+  );
 
   return (
     <div className="app">
