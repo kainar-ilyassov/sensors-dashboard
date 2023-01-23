@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, memo } from "react";
 import { LOADING, NOT_FOUND } from "../../constants";
 import { ISensor } from "../../types";
 import { PlaceHolder } from "../common";

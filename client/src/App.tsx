@@ -17,7 +17,10 @@ const App = () => {
       const data = JSON.parse(message.data) as ISensor;
       setSensorsInfo((prev) => ({
         ...prev,
-        [data.id]: data,
+        [data.id]: {
+          ...data,
+          value: data.value ? data.value : prev[data.id]?.value,
+        },
       }));
     },
     [setSensorsInfo]

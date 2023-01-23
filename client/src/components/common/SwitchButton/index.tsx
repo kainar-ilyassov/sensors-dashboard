@@ -7,17 +7,19 @@ type ISwitchButton = {
   onClick: (isToggled: boolean) => void;
 };
 
-export const SwitchButton = ({ toggled = false, onClick }: ISwitchButton) => {
-  const [isToggled, toggle] = useState(toggled);
-
+export const SwitchButton = ({ toggled, onClick }: ISwitchButton) => {
   const handleClick = () => {
-    toggle(!isToggled);
-    onClick(!isToggled);
+    onClick(!toggled);
   };
 
   return (
     <label>
-      <input type="checkbox" defaultChecked={isToggled} onClick={handleClick} />
+      <input
+        type="checkbox"
+        checked={toggled}
+        defaultChecked={false}
+        onClick={handleClick}
+      />
       <span />
     </label>
   );
